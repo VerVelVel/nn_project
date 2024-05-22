@@ -1,11 +1,12 @@
 FROM python:3.10-slim
 
-WORKDIR /app
+WORKDIR /app/nn_project
 
 RUN apt-get update && apt-get install -y \
     build-essential \
     libpq-dev \
     libssl-dev \
+    git \
     && rm -rf /var/lib/apt/lists/*
 
 RUN git clone https://github.com/VerVelVel/nn_project.git .

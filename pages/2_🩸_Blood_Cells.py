@@ -35,10 +35,11 @@ st.write("# Классификатор картинок по видам клет
 
 @st.cache_resource
 def load_model():
+    device = torch.device('cpu')
     model = ResNet_2()
-    # weights_path = 'models/model2/weights2.pt'  # Убедитесь, что путь к файлу корректен
-    state_dict = torch.load('models/model2/weights21.pt')  
+    state_dict = torch.load('models/model2/weights21.pt', map_location=device)  
     model.model.load_state_dict(state_dict)
+    model.to(device)
     model.eval()
     return model
 

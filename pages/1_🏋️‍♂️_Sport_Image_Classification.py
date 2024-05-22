@@ -23,10 +23,12 @@ from models.model1.preprocessing import preprocess
 # Загрузка модели и словаря
 @st.cache_resource
 def load_model():
+    device = torch.device('cpu')
     model = ResNet_1()
     weights_path = 'models/model1/weights1.pt'
-    state_dict = torch.load(weights_path)
+    state_dict = torch.load(weights_path, map_location=device)
     model.model.fc.load_state_dict(state_dict)
+    model.to(device)
     model.eval()
     return model
 
